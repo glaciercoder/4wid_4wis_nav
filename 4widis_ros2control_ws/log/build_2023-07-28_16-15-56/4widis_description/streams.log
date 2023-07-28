@@ -1,0 +1,31 @@
+[0.007s] Invoking command in '/home/wbc/Projects/4widis_ros2control_ws/build/4widis_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/wbc/Projects/ros2_control_demo/install/rqt_joint_trajectory_controller:/home/wbc/Projects/ros2_control_demo/install/rqt_controller_manager:/home/wbc/Projects/ros2_control_demo/install/ros2controlcli:/home/wbc/Projects/ros2_control_demo/install/ros2_controllers_test_nodes:/opt/ros/humble /usr/bin/cmake --build /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description -- -j24 -l24
+[0.027s] Invoked command in '/home/wbc/Projects/4widis_ros2control_ws/build/4widis_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/wbc/Projects/ros2_control_demo/install/rqt_joint_trajectory_controller:/home/wbc/Projects/ros2_control_demo/install/rqt_controller_manager:/home/wbc/Projects/ros2_control_demo/install/ros2controlcli:/home/wbc/Projects/ros2_control_demo/install/ros2_controllers_test_nodes:/opt/ros/humble /usr/bin/cmake --build /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description -- -j24 -l24
+[0.045s] Invoking command in '/home/wbc/Projects/4widis_ros2control_ws/build/4widis_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/wbc/Projects/ros2_control_demo/install/rqt_joint_trajectory_controller:/home/wbc/Projects/ros2_control_demo/install/rqt_controller_manager:/home/wbc/Projects/ros2_control_demo/install/ros2controlcli:/home/wbc/Projects/ros2_control_demo/install/ros2_controllers_test_nodes:/opt/ros/humble /usr/bin/cmake --install /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description
+[0.049s] -- Install configuration: ""
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/src
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/src/description
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/src/description/test.urdf.xacro
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/launch
+[0.049s] -- Installing: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/launch/display.launch.py
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/rviz
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/rviz/urdf_config.rviz
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/world
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/world/my_world.sdf
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/config
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/config/simple_controllers.yaml
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/ament_index/resource_index/package_run_dependencies/4widis_description
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/ament_index/resource_index/parent_prefix_path/4widis_description
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/environment/ament_prefix_path.sh
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/environment/ament_prefix_path.dsv
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/environment/path.sh
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/environment/path.dsv
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/local_setup.bash
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/local_setup.sh
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/local_setup.zsh
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/local_setup.dsv
+[0.049s] -- Installing: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/package.dsv
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/ament_index/resource_index/packages/4widis_description
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/cmake/4widis_descriptionConfig.cmake
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/cmake/4widis_descriptionConfig-version.cmake
+[0.049s] -- Up-to-date: /home/wbc/Projects/4widis_ros2control_ws/install/4widis_description/share/4widis_description/package.xml
+[0.050s] Invoked command in '/home/wbc/Projects/4widis_ros2control_ws/build/4widis_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/wbc/Projects/ros2_control_demo/install/rqt_joint_trajectory_controller:/home/wbc/Projects/ros2_control_demo/install/rqt_controller_manager:/home/wbc/Projects/ros2_control_demo/install/ros2controlcli:/home/wbc/Projects/ros2_control_demo/install/ros2_controllers_test_nodes:/opt/ros/humble /usr/bin/cmake --install /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description

@@ -1,0 +1,17 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 30
+    use_sim_time: true
+
+    upper_cont:
+      type: forward_command_controller/ForwardCommandController
+
+
+    joint_broad:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+upper_cont:
+  ros__parameters:
+    joints:
+      - upper_joint
+    interface_name: position

@@ -1,0 +1,7 @@
+WARNING: Package name "4widis_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[31mCMake Error at cmake_install.cmake:46 (file):
+  file INSTALL cannot find
+  "/home/wbc/Projects/4widis_ros2control_ws/src/4widis_description/config":
+  No such file or directory.
+
+[0m
