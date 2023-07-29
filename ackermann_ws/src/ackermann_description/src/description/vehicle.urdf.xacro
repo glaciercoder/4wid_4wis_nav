@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<robot name="vehicle" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="inertial_macros.xacro"/>
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <!-- Geometry -->
+    <xacro:property name="base_length" value="3.24644"/>
+    <xacro:property name="base_width" value="2.12321"/>
+    <xacro:property name="base_height" value="1"/>
+    <xacro:property name="base_mass" value="5"/>
+
+    <xacro:property name="wheel_radius" value="0.45"/>
+    <xacro:property name="wheel_width" value="0.04"/>
+    <xacro:property name="wheel_mass" value="1"/>
+    <xacro:property name="front_wheel_track" value="2.12321"/>
+    <xacro:property name="rear_wheel_track" value="1.76868"/>
+    <xacro:property name="wheel_zoff" value="0.5"/>
+
+    <!-- Chassis-->
+    <link name="base_link">
+    </link>
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <geometry>
+                <box size="${base_length} ${base_width} ${base_height}"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${base_length} ${base_width} ${base_height}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="${base_mass}" x="${base_length}" y="${base_width}" z="${base_height}">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+
+    <xacro:macro name="steering_wheel" params="wheel_name joint_name mass radius length x y">
+        <link name="${wheel_name}">
+            <xacro:inertial_cylinder mass="${mass}" length="${length}" radius="${radius}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+            <visual>
+                <geometry>
+                    <cylinder length="${length}" radius="${radius}"/>
+                </geometry>
+                <material name="blue"/>
+            </visual>
+           <collision>
+                <geometry>
+                    <cylinder length="${length}" radius="${radius}"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${joint_name}" type="continuous">
+            <origin xyz="${x} ${y} -${base_height/2 + 2*radius}" rpy="${pi/2} 0.0 0.0"/>
+            <parent link="chassis"/>
+            <child link="${wheel_name}"/>
+            <axis xyz="0.0 1.0 0"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="driving_wheel" params="wheel_name joint_name mass radius length x y">
+        <link name="${wheel_name}">
+            <xacro:inertial_cylinder mass="${mass}" length="${length}" radius="${radius}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+            <visual>
+                <geometry>
+                    <cylinder length="${length}" radius="${radius}"/>
+                </geometry>
+                <material name="blue"/>
+            </visual>
+           <collision>
+                <geometry>
+                    <cylinder length="${length}" radius="${radius}"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${joint_name}" type="continuous">
+            <origin xyz="${x} ${y} -${base_height/2 + 2*radius}" rpy="${pi/2} 0.0 0.0"/>
+            <parent link="chassis"/>
+            <child link="${wheel_name}"/>
+            <axis xyz="0.0 0 -1"/>
+        </joint>
+    </xacro:macro>
+
+
+    <xacro:steering_wheel wheel_name="front_left_wheel" joint_name="front_left_steering_joint" mass="${wheel_mass}" radius="${wheel_radius}" length="${wheel_width}" x="${base_length/2}" y="${front_wheel_track/2}"/>
+    <xacro:steering_wheel wheel_name="front_right_wheel" joint_name="front_right_steering_joint" mass="${wheel_mass}" radius="${wheel_radius}" length="${wheel_width}" x="${base_length/2}" y="${-front_wheel_track/2}"/>
+
+    <xacro:driving_wheel wheel_name="rear_left_wheel" joint_name="rear_left_wheel_joint" mass="${wheel_mass}" radius="${wheel_radius}" length="${wheel_width}" x="${-base_length/2}" y="${front_wheel_track/2}"/>
+    <xacro:driving_wheel wheel_name="rear_right_wheel" joint_name="rear_right_wheel_joint" mass="${wheel_mass}" radius="${wheel_radius}" length="${wheel_width}" x="${-base_length/2}" y="${-front_wheel_track/2}"/>
+
+    <!-- Gazebo-->
+    <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+            <parameters>$(find ackermann_description)/config/controller_manager.yaml</parameters>
+        </plugin>
+    </gazebo>
+
+    <ros2_control name="GazeboSystem" type="system">
+        <hardware>
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </hardware>
+        <joint name="front_left_steering_joint">
+            <command_interface name="position">
+                <param name="min">-pi</param>
+                <param name="max">pi</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="front_right_steering_joint">
+            <command_interface name="position">
+                <param name="min">-pi</param>
+                <param name="max">pi</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="rear_left_wheel_joint">
+            <command_interface name="velocity">
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="rear_right_wheel_joint">
+            <command_interface name="velocity">
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+</robot>
