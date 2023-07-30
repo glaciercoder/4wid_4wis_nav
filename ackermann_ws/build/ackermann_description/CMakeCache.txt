@@ -233,7 +233,7 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Name of the computer/site where compile is being run
-SITE:STRING=wbcPC4090
+SITE:STRING=wbc-Nuvo-7000-Series
 
 //Value Computed by CMake
 ackermann_description_BINARY_DIR:STATIC=/home/wbc/Projects/4wid_4wis_nav/ackermann_ws/build/ackermann_description

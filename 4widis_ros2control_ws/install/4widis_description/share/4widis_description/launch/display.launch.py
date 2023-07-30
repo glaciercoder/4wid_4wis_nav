@@ -2,12 +2,15 @@ from platform import node
 from launch import LaunchDescription
 from launch.actions import RegisterEventHandler
 from launch.event_handlers import OnProcessExit
+from launch.actions import TimerAction
+
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch.actions import  ExecuteProcess
 
 
 def generate_launch_description():
@@ -32,6 +35,14 @@ def generate_launch_description():
         launch_arguments={"verbose": "false"}.items(),
     )
 
+    # gazebo = ExecuteProcess(
+    #     cmd=[[
+    #         'ros2 launch ',
+    #         'gazebo_ros',
+    #         'gazebo.launch.py',
+    #     ]],
+    #     shell=True
+    # )
     # Get URDF via xacro
     robot_description_content = Command(
         [
@@ -45,14 +56,6 @@ def generate_launch_description():
         ]
     )
     robot_description = {"robot_description": robot_description_content}
-
-    robot_controllers = PathJoinSubstitution(
-        [
-            FindPackageShare("4widis_description"),
-            "config",
-            "simple_controllers.yaml",
-        ]
-    )
 
     rviz_config_file = PathJoinSubstitution(
         [FindPackageShare("4widis_description"), "rviz", "urdf_config.rviz"]
@@ -93,13 +96,17 @@ def generate_launch_description():
         condition=IfCondition(gui),
     )
 
+    time_action = [TimerAction(
+            period=10.0,
+            actions=[node_robot_state_publisher,
+            spawn_entity,
+            joint_state_broadcaster_spawner,
+            robot_controller_spawner,
+            rviz_node,]
+        )]
+
     nodes = [
-        # gazebo,
-        node_robot_state_publisher,
-        spawn_entity,
-        joint_state_broadcaster_spawner,
-        robot_controller_spawner,
-        rviz_node,
+        gazebo,
     ]
 
-    return LaunchDescription(declared_arguments + nodes)
+    return LaunchDescription(declared_arguments + nodes + time_action)

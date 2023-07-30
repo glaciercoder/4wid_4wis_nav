@@ -2,7 +2,7 @@
 # ament_cmake_core/cmake/uninstall_target/ament_cmake_uninstall_target.cmake.in
 
 function(ament_cmake_uninstall_target_remove_empty_directories path)
-  set(install_space "/home/wbc/Projects/4widis_ros2control_ws/install/4widis_description")
+  set(install_space "/home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/install/4widis_description")
   if(install_space STREQUAL "")
     message(FATAL_ERROR "The CMAKE_INSTALL_PREFIX variable must not be empty")
   endif()
@@ -29,7 +29,7 @@ function(ament_cmake_uninstall_target_remove_empty_directories path)
 endfunction()
 
 # uninstall files installed using the standard install() function
-set(install_manifest "/home/wbc/Projects/4widis_ros2control_ws/build/4widis_description/install_manifest.txt")
+set(install_manifest "/home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/build/4widis_description/install_manifest.txt")
 if(NOT EXISTS "${install_manifest}")
   message(FATAL_ERROR "Cannot find install manifest: ${install_manifest}")
 endif()

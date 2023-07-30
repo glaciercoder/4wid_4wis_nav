@@ -1,7 +1,7 @@
 /home/wbc/Projects/4wid_4wis_nav/ackermann_ws/install/ackermann_description/share/ackermann_description/src/description/inertial_macros.xacro
 /home/wbc/Projects/4wid_4wis_nav/ackermann_ws/install/ackermann_description/share/ackermann_description/src/description/vehicle.urdf.xacro
-/home/wbc/Projects/4wid_4wis_nav/ackermann_ws/install/ackermann_description/share/ackermann_description/launch/display.launch.py
 /home/wbc/Projects/4wid_4wis_nav/ackermann_ws/install/ackermann_description/share/ackermann_description/launch/gazebo_sim.launch.py
+/home/wbc/Projects/4wid_4wis_nav/ackermann_ws/install/ackermann_description/share/ackermann_description/launch/display.launch.py
 /home/wbc/Projects/4wid_4wis_nav/ackermann_ws/install/ackermann_description/share/ackermann_description/rviz/urdf_config.rviz
 /home/wbc/Projects/4wid_4wis_nav/ackermann_ws/install/ackermann_description/share/ackermann_description/config/controller_manager.yaml
 /home/wbc/Projects/4wid_4wis_nav/ackermann_ws/install/ackermann_description/share/ament_index/resource_index/package_run_dependencies/ackermann_description

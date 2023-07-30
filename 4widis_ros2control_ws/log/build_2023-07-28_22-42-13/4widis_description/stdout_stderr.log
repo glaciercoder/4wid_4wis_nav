@@ -1,0 +1,4 @@
+[0mCMake Error: The current CMakeCache.txt directory /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/build/4widis_description/CMakeCache.txt is different than the directory /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
+[0mCMake Error: The source directory "/home/wbc/Projects/4widis_ros2control_ws/src/4widis_description" does not exist.
+Specify --help for usage, or press the help button on the CMake GUI.[0m
+gmake: *** [Makefile:226: cmake_check_build_system] Error 1

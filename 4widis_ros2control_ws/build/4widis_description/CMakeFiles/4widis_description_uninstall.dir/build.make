@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/wbc/Projects/4widis_ros2control_ws/src/4widis_description
+CMAKE_SOURCE_DIR = /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/src/4widis_description
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description
+CMAKE_BINARY_DIR = /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/build/4widis_description
 
 # Utility rule file for 4widis_description_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/4widis_description_uninstall.dir/compiler_depend.make
 include CMakeFiles/4widis_description_uninstall.dir/progress.make
 
 CMakeFiles/4widis_description_uninstall:
-	/usr/bin/cmake -P /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/build/4widis_description/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 4widis_description_uninstall: CMakeFiles/4widis_description_uninstall
 4widis_description_uninstall: CMakeFiles/4widis_description_uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/4widis_description_uninstall.dir/clean:
 .PHONY : CMakeFiles/4widis_description_uninstall.dir/clean
 
 CMakeFiles/4widis_description_uninstall.dir/depend:
-	cd /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/wbc/Projects/4widis_ros2control_ws/src/4widis_description /home/wbc/Projects/4widis_ros2control_ws/src/4widis_description /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description /home/wbc/Projects/4widis_ros2control_ws/build/4widis_description/CMakeFiles/4widis_description_uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/build/4widis_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/src/4widis_description /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/src/4widis_description /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/build/4widis_description /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/build/4widis_description /home/wbc/Projects/4wid_4wis_nav/4widis_ros2control_ws/build/4widis_description/CMakeFiles/4widis_description_uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/4widis_description_uninstall.dir/depend
 
