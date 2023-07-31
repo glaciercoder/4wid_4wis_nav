@@ -8,10 +8,11 @@
 
 ## 启动：
 
-+ 进入工作空间 4wid_ws并source
++ 进入工作空间 4wid_ws并编译、source
   
   ```bash
   cd ~/4wid_ws                 #use the path of your workspace. In this doc, the workspace is placed at ~/ directly
+  colcon build
   . install/setup.bash
   ```
 
@@ -69,5 +70,3 @@
 + 对于Nav2导航栈的planner、controller等的配置均在nav2_params.yaml内，具体参数配置方式见[NAV2官方文档_Configuration Guide](https://navigation.ros.org/configuration/index.html)
 
 + 在控制实际机器人时，可以在bringup_4wid_launch.py内使用 IncludeLaunchDescription() 实现。
-
-
