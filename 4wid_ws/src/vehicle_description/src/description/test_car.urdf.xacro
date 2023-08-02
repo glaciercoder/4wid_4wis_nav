@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="test_car">
+    <!-- Global properties-->
+    <xacro:property name="suspension_width_x" value="0.1"/>
+    <xacro:property name="suspension_width_y" value="0.1"/>
+    <!-- wheel generation for wheel link, suspspension link and joint -->
+    <!-- reflect1 for left or right(y)-->
+    <xacro:macro name="wheel_gen" params="suffix radius width reflect1">
+        <link name="wheel_${suffix}_suspension">
+            <visual>
+                <geometry>
+                    <box size="${suspension_width_x} ${suspension_width_y} ${2*radius}"/>
+                </geometry>
+                <material name="white">
+                    <color rgba="1 1 1 1"/> 
+                </material>
+                <origin xyz="0.0 0.0 ${-radius}" rpy="0.0 0.0 0.0"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${suspension_width_x} ${suspension_width_y} ${2*radius}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="0.1"/>
+                <inertia ixx="0.00041666666666666675" ixy="0.0" ixz="0.0" iyy="0.00041666666666666675" iyz="0.0" izz="0.0001666666666666667"/>
+            </inertial>
+        </link>
+        <joint name="wheel_joint_${suffix}" type="continuous">
+            <origin xyz="0.0 ${reflect1*0.05} ${-1.5*radius}" rpy="${pi / 2} 0.0 0.0"/>
+            <parent link="wheel_${suffix}_suspension"/>
+            <child link="wheel_${suffix}"/>
+            <axis xyz="0.0 0.0 1"/>
+        </joint>
+        <link name="wheel_${suffix}">
+            <visual>
+                <geometry>
+                    <cylinder radius="${radius}" length="${width}"/>
+                </geometry>
+                <origin xyz="0.0 0 ${-0.5*reflect1*width} " rpy="0.0 0.0 0.0"/>
+                <material name="blue">
+                    <color rgba="0 0 0.8 1"/> 
+                </material>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${radius}" length="${width}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="1"/>
+                <inertia ixx="0.002708333333333334" ixy="0.0" ixz="0.0" iyy="0.002708333333333334" iyz="0.0" izz="0.005000000000000001"/>
+            </inertial>
+        </link>
+    </xacro:macro>
+
+    <!-- Wheel steer joint Generation-->
+    <xacro:macro name="steer_gen" params="suffix x y z">
+        <joint name="wheel_${suffix}_steer" type="continuous">
+            <origin xyz="${x} ${y} ${z}" rpy="0.0 0.0 0.0"/>
+            <parent link="car_body"/>
+            <child link="wheel_${suffix}_suspension"/>
+            <axis xyz="0.0 0.0 1"/>
+            <limit effort="30" velocity="1.0"/>
+            
+        </joint> 
+    </xacro:macro>
+
+    <!-- Model's parameters-->
+    <xacro:property name="car_length" value="1"/>
+    <xacro:property name="car_width" value="0.8"/>
+    <xacro:property name="car_height" value="0.2"/>
+    <xacro:property name="wheel_radius" value="0.1"/>
+    <xacro:property name="wheel_width" value="0.05"/>
+
+    <!-- Model Generation-->
+    <!-- Car body generation make the wheel touch the ground-->
+    <link name="base_link">
+    </link>
+    <joint name="car_body_joint" type="fixed">
+        <origin xyz="0.0 0.0 ${car_height/2 + 2.5*wheel_radius}" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="car_body"/>
+    </joint>
+    <link name="car_body">
+        <visual>
+            <geometry>
+              <!--box size="${car_length} ${car_width} ${car_height}"/-->
+              <mesh filename="package://vehicle_description/meshes/all.stl"/>
+              <origin xyz="0.0 0.0 -0.27"/>
+            </geometry> 
+            <material name="black">
+                <color rgba="0 0 0 1"/> 
+            </material>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${car_length} ${car_width} ${car_height}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="10"/>
+           <inertia ixx="0.56666" ixy="0.0" ixz="0.0" iyy="0.86666666" iyz="0.0" izz="1.3666666"/>
+        </inertial>
+    </link>
+
+    <xacro:steer_gen suffix="1" x="0.3" y="0.2" z="-0.1"/>
+    <xacro:wheel_gen suffix="1" radius="${wheel_radius}" width="${wheel_width}" reflect1="1" />
+    <xacro:steer_gen suffix="2" x="-0.3" y="0.2" z="-0.1"/>
+    <xacro:wheel_gen suffix="2" radius="${wheel_radius}" width="${wheel_width}" reflect1="1" />
+    <xacro:steer_gen suffix="3" x="0.3" y="-0.2" z="-0.1"/>
+    <xacro:wheel_gen suffix="3" radius="${wheel_radius}" width="${wheel_width}" reflect1="-1" />
+    <xacro:steer_gen suffix="4" x="-0.3" y="-0.2" z="-0.1"/>
+    <xacro:wheel_gen suffix="4" radius="${wheel_radius}" width="${wheel_width}" reflect1="-1" />
+    <!-- Transmission Macro-->
+    <xacro:macro name="steer_trans" params="suffix">
+        <transmission name="steering">
+            <type>transmission_interface/SimpleTransmission</type>
+            <actuator name="$steering_motor">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+            <joint name="wheel_${suffix}_steer">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            </joint>
+        </transmission>   
+    </xacro:macro>
+    <xacro:macro name="wheel_trans" params="suffix">
+        <transmission name="wheel_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <actuator name="$wheel_motor">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+            <joint name="wheel_joint_${suffix}">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+        </transmission>   
+    </xacro:macro>
+    <xacro:steer_trans suffix="1"/>
+    <xacro:steer_trans suffix="2"/>
+    <xacro:steer_trans suffix="3"/>
+    <xacro:steer_trans suffix="4"/>
+    <xacro:wheel_trans suffix="1"/>
+    <xacro:wheel_trans suffix="2"/>
+    <xacro:wheel_trans suffix="3"/>
+    <xacro:wheel_trans suffix="4"/>
+
+</robot>
